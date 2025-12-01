@@ -21,6 +21,9 @@ class Post(models.Model):
     def __str__(self):
         return f"{self.title} - {self.id}"  # type: ignore
     
+    # def snippet(self):
+    #     return self.content[:100] + "..."
+    
 class Category(models.Model):
     name = models.CharField(max_length=255)
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
@@ -28,3 +31,4 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    

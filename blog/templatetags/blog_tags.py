@@ -15,7 +15,7 @@ def function2():
 def snippet(value,arg=20):  # sourcery skip: use-fstring-for-concatenation
     return value[:arg] + '...' if len(value) > 100 else value
 
-@register.inclusion_tag('popular_posts.html')
-def popular_posts():
-    posts = Post.objects.filter(status=1).order_by('published_date')[:4]
+@register.inclusion_tag('blog/blog-popular-posts.html')
+def latest_posts(arg=3):
+    posts = Post.objects.filter(status=1).order_by('published_date')[:arg]
     return {'posts': posts}

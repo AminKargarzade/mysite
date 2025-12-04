@@ -10,3 +10,7 @@ def function():
 @register.simple_tag(name='posts')
 def function2():
     return Post.objects.filter(status=1)
+
+@register.filter(name='snippet')
+def snippet(value,arg=20):  # sourcery skip: use-fstring-for-concatenation
+    return value[:arg] + '...' if len(value) > 100 else value

@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger

@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 
@@ -27,4 +28,14 @@ def blog_category(request,cat_name):
     posts = Post.objects.filter(status=1)
     posts = posts.filter(category__name=cat_name)
     context = {'posts':posts}
+    return render(request, 'blog/blog-home.html', context)
+
+def blog_search(request):
+    # print(request.__dict__)
+    posts = Post.objects.filter(status=1)
+    if request.method == "GET":
+        # print(request.GET.get('s'))
+        if s:= request.GET.get('s'):
+            posts = posts.filter(content__contains=s)
+    context = {'posts': posts}
     return render(request, 'blog/blog-home.html', context)

@@ -1,5 +1,5 @@
 from django import forms
-from website.models import Contact
+from website.models import Contact, NewsLetter
 
 class NameForm(forms.Form):
     name = forms.CharField(label='Your name', max_length=255)
@@ -14,3 +14,8 @@ class ContactForm(forms.ModelForm):
         widgets = {
             'message': forms.Textarea(attrs={'rows': 6}),
         }
+        
+class NewsLetterForm(forms.ModelForm):
+    class Meta:
+        model = NewsLetter
+        fields = ['email']

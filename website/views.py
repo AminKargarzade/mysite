@@ -8,18 +8,6 @@ def index_view(request):
 def about_view(request):
     return render(request, 'website/about.html')
 
-
-
-
-
-
-
-
-
-
-
-
-
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -30,6 +18,7 @@ def contact_view(request):
     return render(request, 'website/contact.html', {'form': form})
 
 def newsletter_view(request):
+    # sourcery skip: remove-unnecessary-else, swap-if-else-branches
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
@@ -40,26 +29,11 @@ def newsletter_view(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def test_view(request):
+# sourcery skip: no-conditionals-in-tests, remove-unnecessary-else, swap-if-else-branches
     if request.method == 'POST':
         form = ContactForm(request.POST)
+# sourcery skip: no-conditionals-in-tests
         if form.is_valid():
             form.save()
             return HttpResponse('done')

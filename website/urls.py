@@ -8,5 +8,5 @@ urlpatterns = [
     path('about', about_view, name="about"),
     path('contact', contact_view, name="contact"),
     path('test', test_view, name="test"),
-    path('newsletter', newsletter_view, name="newsletter"),
+    path('newsletter', newsletter_view, name="newsletter") # type: ignore
 ]

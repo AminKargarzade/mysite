@@ -2,6 +2,7 @@ from unicodedata import category
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager # type: ignore
 
 # Create your models here.
 class Post(models.Model):
@@ -9,7 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
-    # tags
+    tags = TaggableManager(blank=True)
     category = models.ManyToManyField('Category',blank=True)
     counted_views = models.IntegerField(default=0)
     status = models.BooleanField(default=False)

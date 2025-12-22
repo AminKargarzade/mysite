@@ -14,6 +14,7 @@ class Post(models.Model):
     category = models.ManyToManyField('Category',blank=True)
     counted_views = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
+    login_required = models.BooleanField(default=False)
     published_date = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, blank=True, null=True)
@@ -27,7 +28,7 @@ class Post(models.Model):
     #     return self.content[:100] + "..."
     
     def get_absolute_url(self):
-        return reverse('blog:single',kwargs={'pid':self.id})
+        return reverse('blog:single',kwargs={'pid':self.id}) # type: ignore
     
 class Category(models.Model):
     name = models.CharField(max_length=255)
